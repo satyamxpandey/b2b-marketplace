@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>B2B Wholesale Marketplace</title>
+<title>B2B Marketplace</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,14 +12,24 @@
 <header class="header">
 <div class="logo">BulkMarket</div>
 
-<input type="text" id="searchInput" placeholder="Search wholesale products...">
+<input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()">
 
-<button onclick="openSupplierForm()">Become Supplier</button>
+<select onchange="filterCategory(this.value)">
+<option value="">All Categories</option>
+<option>Mobile Accessories</option>
+<option>Electronics</option>
+<option>Fashion</option>
+<option>Jewellery</option>
+</select>
+
+<button onclick="openLogin()">Supplier Login</button>
+<button onclick="openSupplierForm()">Add Product</button>
+
 </header>
 
 <section class="hero">
-<h1>India Wholesale Marketplace</h1>
-<p>Connect with manufacturers & wholesalers</p>
+<h1>B2B Wholesale Marketplace</h1>
+<p>Manufacturers • Wholesalers • Retailers</p>
 </section>
 
 <section class="products">
@@ -27,20 +37,42 @@
 <div id="productList" class="product-grid"></div>
 </section>
 
+<!-- LOGIN -->
+<div id="loginModal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="closeLogin()">×</span>
+<h2>Supplier Login</h2>
+
+<input id="loginUser" placeholder="Business Name">
+<input id="loginPass" placeholder="Password" type="password">
+
+<button onclick="login()">Login</button>
+
+</div>
+</div>
+
 <!-- Supplier Form -->
 <div id="supplierModal" class="modal">
 <div class="modal-content">
 
 <span class="close" onclick="closeSupplierForm()">×</span>
 
-<h2>Add Wholesale Product</h2>
+<h2>Add Product</h2>
 
 <input id="supplierName" placeholder="Business Name">
 <input id="productName" placeholder="Product Name">
-<input id="price" placeholder="Price per piece">
-<input id="moq" placeholder="Minimum Order Quantity">
+
+<select id="category">
+<option>Mobile Accessories</option>
+<option>Electronics</option>
+<option>Fashion</option>
+<option>Jewellery</option>
+</select>
+
+<input id="price" placeholder="Price">
+<input id="moq" placeholder="MOQ">
 <input id="location" placeholder="Location">
-<input id="whatsapp" placeholder="WhatsApp Number">
+<input id="whatsapp" placeholder="WhatsApp">
 <input id="image" placeholder="Image URL">
 
 <button onclick="addProduct()">Add Product</button>
@@ -49,6 +81,5 @@
 </div>
 
 <script src="script.js"></script>
-
 </body>
 </html>
